@@ -1,0 +1,72 @@
+.Pizzasingle {
+  margin: 50px 50px 0 50px;
+  display: flex;
+  width: 600px;
+  height: 300px;
+  background-color: #f0f5f5;
+  padding: 0;
+  border-radius: 10px;
+  padding-top: 20px;
+}
+
+.PizzasingleImage {
+  flex: 40%;
+}
+
+.PizzasingleImage img {
+  height: 250px;
+  width: 250px;
+  text-align: center;
+  margin: 10px;
+  border-radius: 10px;
+}
+
+.PizzasingleInfo {
+  flex: 60%;
+  display: flex;
+}
+
+.PizzasingleInfoDesc {
+  flex: 75%;
+}
+
+.PizzasingleInfoDesc h3 {
+  font-family: "Baskervville", serif;
+  font-size: 24px;
+}
+
+.PizzasingleInfoDesc h4 {
+  font-family: "Roboto Condensed", sans-serif;
+}
+
+.PizzasingleInfoDesc p {
+  font-family: sans-serif;
+}
+.PizzasingleInfoIcons {
+  flex: 25%;
+}
+
+.PizzasingleInfoIcons img {
+  width: 30px;
+  margin: 0;
+  margin-top: 20px;
+}
+
+.PizzasingleInfoIcons button {
+  margin: 0px 10px 0px 10px;
+  position: relative;
+  top: -10px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: white;
+  font-size: 15px;
+  text-align: center;
+  color: black;
+}
+
+@media (max-width: 1440px) {
+  .Pizzasingle {
+    margin: 50px 40px 0;
+  }
+}
