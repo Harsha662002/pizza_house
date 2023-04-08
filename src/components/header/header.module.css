@@ -1,0 +1,26 @@
+.mainHeading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40px;
+}
+
+.mainHeading img {
+  width: 100px;
+  height: 100px;
+  transform: rotate(30deg);
+  margin-right: 20px;
+}
+
+.mainHeading h1 {
+  font-size: 48px;
+  font-family: "Baskervville", serif;
+  text-transform: uppercase;
+}
+
+.header h2 {
+  text-align: center;
+  font-family: "Baskervville", serif;
+  font-size: 36px;
+  margin-top: -12px;
+}
