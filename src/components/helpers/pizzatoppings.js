@@ -1,10 +1,26 @@
 import React from "react";
 import Styles from "./helper.module.css";
+import { useState } from "react";
 
 export default function Pizzatoppings({ selection, onToppingSelect }) {
+  const [checkboxValues, setCheckboxValues] = useState([]);
+
   const handleToppingSelect = (event) => {
-    onToppingSelect(event.target.value);
+    if (selection.isRadio) {
+      onToppingSelect(selection.isRadio, event.target.value);
+    } else {
+      const isChecked = event.target.checked;
+      if (isChecked) {
+        setCheckboxValues((prevState) => [...prevState, event.target.value]);
+      } else {
+        setCheckboxValues((prevState) =>
+          prevState.filter((val) => val !== event.target.value)
+        );
+      }
+      onToppingSelect(selection.isRadio, checkboxValues);
+    }
   };
+
   return (
     <div className={Styles.PizzaToppings}>
       <h3>{selection.title}</h3>
@@ -26,6 +42,7 @@ export default function Pizzatoppings({ selection, onToppingSelect }) {
                     name="topping"
                     value={item.name}
                     onChange={handleToppingSelect}
+                    // checked={isCheckboxChecked(item.name)}
                   />
                 )}
                 {item.name}

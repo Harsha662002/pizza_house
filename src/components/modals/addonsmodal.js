@@ -5,28 +5,64 @@ import Pizzatoppings from "../helpers/pizzatoppings";
 import { useState } from "react";
 
 export default function Addonsmodal(props) {
-  const [selectedToppings, setSelectedToppings] = useState([]);
+  let [selectedToppings, setSelectedToppings] = useState([]);
   const [selectedSize, setSelectedSize] = useState([]);
-
+  // let inputTopping;
   //TOPPINGS
-  const handleToppingSelect = (topping) => {
-    setSelectedToppings((prevToppings) => [...prevToppings, topping]);
+
+  // function removeDuplicates(arr) {
+  //   const counts = {};
+
+  //   for (const item of arr) {
+  //     counts[item] = (counts[item] || 0) + 1;
+  //   }
+
+  //   const result = [];
+  //   for (const item of arr) {
+  //     if (counts[item] % 2 === 0) {
+  //       continue;
+  //     }
+  //     if (!result.includes(item)) {
+  //       result.push(item);
+  //     }
+  //   }
+
+  //   return result;
+  // }
+
+  const handleToppingSelect = (input, topping) => {
+    if (input === true) {
+      setSelectedToppings(topping);
+      // inputTopping = true;
+      // console.log("selected toppings", inputTopping);
+    } else {
+      setSelectedToppings((prevToppings) => [...prevToppings, topping]);
+      // console.log(selectedToppings);
+    }
   };
 
-  const selectedTopping = new Set(selectedToppings);
-
   //SIZES
-  const handleSizeSelect = (size) => {
-    setSelectedSize((prevsize) => [...prevsize, size]);
+  const handleSizeSelect = (input, size) => {
+    if (input === true) {
+      setSelectedSize(size);
+    } else {
+      setSelectedSize((prevsize) => [...prevsize, size]);
+    }
   };
 
   const selectedsize = new Set(selectedSize);
 
   //ADDING TOPPINGS AND SIZES TO CART
   const handleAddToCart = () => {
+    // if (inputTopping === false) {
+    //   selectedToppings = selectedToppings.flat();
+    //   console.log("selected toppings1", selectedToppings);
+    //   selectedToppings = removeDuplicates(selectedToppings);
+    //   console.log("selected toppings2", selectedToppings);
+    // }
     props.handleAddToCart({
       ...props.pizza,
-      toppings: selectedTopping,
+      toppings: selectedToppings,
       size: selectedsize,
     });
     props.onClose();

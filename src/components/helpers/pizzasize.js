@@ -3,21 +3,27 @@ import Styles from "./helper.module.css";
 import { useState } from "react";
 
 export default function Pizzasize({ selection, onSizeSelect }) {
-  const [clickCount, setClickCount] = useState(0);
+  const [checkboxValues, setCheckboxValues] = useState([]);
 
   const handleSizeSelect = (event) => {
-    const isChecked = event.target.checked;
     const value = event.target.value;
-    setClickCount(clickCount + (isChecked ? 1 : -1));
-    if (isChecked && clickCount % 2 === 0) {
-      onSizeSelect(value);
-    } else if (!isChecked && clickCount % 2 !== 0) {
-      onSizeSelect(value);
+    console.log(value);
+    if (selection.isRadio) {
+      onSizeSelect(selection.isRadio, value);
+    } else {
+      const isChecked = event.target.checked;
+      if (isChecked) {
+        setCheckboxValues([...checkboxValues, value]);
+      } else {
+        setCheckboxValues(checkboxValues.filter((val) => val !== value));
+      }
+      onSizeSelect(selection.isRadio, checkboxValues);
     }
   };
-  // const handleSizeSelect = (event) => {
-  //   onSizeSelect(event.target.value);
-  // };
+
+  const isCheckboxChecked = (value) => {
+    return checkboxValues.includes(value);
+  };
 
   return (
     <div className={Styles.PizzaSize}>
@@ -40,7 +46,8 @@ export default function Pizzasize({ selection, onSizeSelect }) {
                     name="size"
                     value={item.size}
                     onChange={handleSizeSelect}
-                    checked={clickCount % 2 !== 0}
+                    // checked={clickCount % 2 !== 0}
+                    checked={isCheckboxChecked(item.size)}
                   />
                 )}
                 {item.size}
